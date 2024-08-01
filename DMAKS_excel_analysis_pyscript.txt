@@ -1,0 +1,66 @@
+
+import pandas as pd
+
+#list of excel files
+
+file_paths = [
+    r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\SE_1_20_DMAKS.xlsx",
+    r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\ET1B_1_20_DMAKS.xlsx",
+    r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\ET3B_1_20_DMAKS.xlsx",
+    r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\NE_1_20_DMAKS.xlsx",
+]
+
+sheet_name = 'Sheet1'
+
+# Initialize an empty list to store the results
+
+combined_results = []
+
+for file_path in file_paths:
+    # Read the Excel file
+    
+    df = pd.read_excel(file_path, sheet_name=sheet_name)
+    
+    # Isolate values from the 'thickness' column where 'original_facies_type' is 'f3a'
+    
+    selectfloat = df.loc[df['original_facies_type'] == 'f3a', ['thickness']] #change the facies code as sees fit
+    
+    #Add a column with the file name
+    
+    file_name = file_path.split('\\')[-1] #extracts file name from its path
+    clean_file_name = file_name.replace('_1_20_DMAKS.xlsx', '')
+    selectfloat['file_name'] = clean_file_name
+    
+    #reorder to have 'file_name' as first column
+    
+    selectfloat = selectfloat[['file_name', 'thickness']]
+    
+    
+    # Append the filtered values to the combined_results list
+    if not selectfloat.empty:
+        combined_results.append(selectfloat)
+
+# Append the filtered values to the combined_results list
+
+    if not selectfloat.empty:
+        combined_results.append(selectfloat)
+
+# Concatenate all series in the list into a single series
+
+if combined_results:
+    combined_series = pd.concat(combined_results, ignore_index=True)
+    
+    # Copy the combined results to the clipboard
+    
+    combined_series.to_clipboard(excel=True, index=False)
+    print("Selected values from all files have been copied to the clipboard.")
+else:
+    print("No data to copy to the clipboard.")
+
+###earier verion for one excel file###
+#df = pd.read_excel((r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\ET1B_1-20_DMAKS.xlsx"), sheet_name ='Sheet1')
+#selectfloat = df['thickness'].where(df['original_facies_type'] == 'f3a').dropna()
+#selectfloat.to_clipboard(excel=True)
+#print ('selected values have been copied to the clipboard')
+
+
