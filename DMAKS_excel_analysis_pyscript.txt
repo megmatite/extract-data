@@ -4,10 +4,10 @@ import pandas as pd
 #list of excel files
 
 file_paths = [
-    r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\SE_1_20_DMAKS.xlsx",
-    r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\ET1B_1_20_DMAKS.xlsx",
-    r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\ET3B_1_20_DMAKS.xlsx",
-    r"C:\Users\eemcd\OneDrive - University of Leeds\Research\Peira Cava\Peira Cava 2023\Logs\DMAKS logs\NE_1_20_DMAKS.xlsx",
+    r"#insert file name here#",
+    r"#insert file name here#",
+    r"#insert file name here#",
+    r"#insert file name here#",
 ]
 
 sheet_name = 'Sheet1'
